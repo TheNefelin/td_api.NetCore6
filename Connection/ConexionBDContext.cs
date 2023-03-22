@@ -297,8 +297,205 @@ namespace td_api.NetCore6.Connection
 
             return r;
         }
+        //-- F1 Reset -----------------------------------------------------------------------------------
         //-----------------------------------------------------------------------------------------------
-        //-----------------------------------------------------------------------------------------------
+        public async Task<dynamic> SpReset(
+            IDbConnection conexion,
+            IDbTransaction? transaccion,
+            CancellationToken cancelarToken)
+        {
+            var r = await conexion.QueryAsync(
+                new CommandDefinition(
+                    $"sp_reset",
+                    transaction: transaccion,
+                    cancellationToken: cancelarToken));
 
+            return r;
+        }
+        //-- F1 Circuitos -------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------------
+        public async Task<IEnumerable<dynamic>> SpCircuitos(
+            IDbConnection conexion,
+            IDbTransaction? transaccion,
+            CancellationToken cancelarToken)
+        {
+            var r = await conexion.QueryAsync(
+                new CommandDefinition(
+                    $"sp_circuitos",
+                    transaction: transaccion,
+                    cancellationToken: cancelarToken));
+
+            return r;
+        }
+
+        public async Task<dynamic> SpCircuitosById(
+            int @id,
+            IDbConnection conexion,
+            IDbTransaction? transaccion,
+            CancellationToken cancelarToken)
+        {
+            var r = await conexion.QueryAsync(
+                new CommandDefinition(
+                    $"sp_circuitosById @{nameof(id)}",
+                    new { id },
+                    transaction: transaccion,
+                    cancellationToken: cancelarToken));
+
+            return r;
+        }
+
+        public async Task<dynamic> SpCircuitosSetById(
+            int @id,
+            IDbConnection conexion,
+            IDbTransaction? transaccion,
+            CancellationToken cancelarToken)
+        {
+            var r = await conexion.QueryAsync(
+                new CommandDefinition(
+                    $"sp_circuitosSetById @{nameof(id)}",
+                    new { id },
+                    transaction: transaccion,
+                    cancellationToken: cancelarToken));
+
+            return r;
+        }
+        //-- F1 Pilotos ---------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------------
+        public async Task<IEnumerable<dynamic>> SpPilotos(
+            IDbConnection conexion,
+            IDbTransaction? transaccion,
+            CancellationToken cancelarToken)
+        {
+            var r = await conexion.QueryAsync(
+                new CommandDefinition(
+                    $"sp_pilotos",
+                    transaction: transaccion,
+                    cancellationToken: cancelarToken));
+
+            return r;
+        }
+
+        public async Task<IEnumerable<dynamic>> SpPilotosActivos(
+            IDbConnection conexion,
+            IDbTransaction? transaccion,
+            CancellationToken cancelarToken)
+        {
+            var r = await conexion.QueryAsync(
+                new CommandDefinition(
+                    $"sp_pilotosActivos",
+                    transaction: transaccion,
+                    cancellationToken: cancelarToken));
+
+            return r;
+        }
+        public async Task<dynamic> SpPilotosSetById(
+            int @id,
+            IDbConnection conexion,
+            IDbTransaction? transaccion,
+            CancellationToken cancelarToken)
+        {
+            var r = await conexion.QueryAsync(
+                new CommandDefinition(
+                    $"sp_pilotosSetById @{nameof(id)}",
+                    new { id },
+                    transaction: transaccion,
+                    cancellationToken: cancelarToken));
+
+            return r;
+        }
+        //-- F1 Carrera ---------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------------
+        public async Task<IEnumerable<dynamic>> SpCarrera(
+            IDbConnection conexion,
+            IDbTransaction? transaccion,
+            CancellationToken cancelarToken)
+        {
+            var r = await conexion.QueryAsync(
+                new CommandDefinition(
+                    $"sp_carrera",
+                    transaction: transaccion,
+                    cancellationToken: cancelarToken));
+
+            return r;
+        }
+
+        public async Task<dynamic> SpCarreraSet(
+            F1_Carrera tb,
+            IDbConnection conexion,
+            IDbTransaction? transaccion,
+            CancellationToken cancelarToken)
+        {
+            var r = await conexion.QueryAsync(
+                new CommandDefinition(
+                    $"sp_carreraSet @{nameof(tb.IdCircuito)}, @{nameof(tb.IdPiloto)}, @{nameof(tb.Distancia)}, @{nameof(tb.Puntaje)}, @{nameof(tb.Lugar)}, @{nameof(tb.CarreraTerminada)}, @{nameof(tb.Incidente)}, @{nameof(tb.Motivo)}",
+                    new { tb.IdCircuito, tb.IdPiloto, tb.Distancia, tb.Puntaje, tb.Lugar, tb.CarreraTerminada, tb.Incidente, tb.Motivo },
+                    transaction: transaccion,
+                    cancellationToken: cancelarToken));
+
+            return r;
+        }
+        //---F1 Reportes --------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------------
+        public async Task<IEnumerable<dynamic>> SpTablaPosiciones(
+            IDbConnection conexion,
+            IDbTransaction? transaccion,
+            CancellationToken cancelarToken)
+        {
+            var r = await conexion.QueryAsync(
+                new CommandDefinition(
+                    $"sp_tabla_posiciones",
+                    transaction: transaccion,
+                    cancellationToken: cancelarToken));
+
+            return r;
+        }
+
+        public async Task<IEnumerable<dynamic>> SpTablaEscuderia(
+            IDbConnection conexion,
+            IDbTransaction? transaccion,
+            CancellationToken cancelarToken)
+        {
+            var r = await conexion.QueryAsync(
+                new CommandDefinition(
+                    $"sp_tabla_escuderia",
+                    transaction: transaccion,
+                    cancellationToken: cancelarToken));
+
+            return r;
+        }
+
+        public async Task<IEnumerable<dynamic>> SpTablaAbandonos(
+            IDbConnection conexion,
+            IDbTransaction? transaccion,
+            CancellationToken cancelarToken)
+        {
+            var r = await conexion.QueryAsync(
+                new CommandDefinition(
+                    $"sp_tabla_abandonos",
+                    transaction: transaccion,
+                    cancellationToken: cancelarToken));
+
+            return r;
+        }
+
+        public async Task<IEnumerable<dynamic>> SpTablaFallecidos(
+            IDbConnection conexion,
+            IDbTransaction? transaccion,
+            CancellationToken cancelarToken)
+        {
+            var r = await conexion.QueryAsync(
+                new CommandDefinition(
+                    $"sp_tabla_fallecidos",
+                    transaction: transaccion,
+                    cancellationToken: cancelarToken));
+
+            return r;
+        }
+        //-----------------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------------
     }
 }
